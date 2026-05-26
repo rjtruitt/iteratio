@@ -1,0 +1,75 @@
+{
+  "name": "iteratio",
+  "version": "0.1.0",
+  "type": "module",
+  "description": "Agent execution loop with plugin architecture",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "src",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage",
+    "lint": "eslint src --ext .ts",
+    "format": "prettier --write \"src/**/*.ts\"",
+    "prepublishOnly": "npm run build && npm test"
+  },
+  "keywords": [
+    "agent-loop",
+    "llm",
+    "tool-calling",
+    "plugin-architecture",
+    "orchestration"
+  ],
+  "author": "Rob Truitt",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rjtruitt/iteratio.git"
+  },
+  "bugs": {
+    "url": "https://github.com/rjtruitt/iteratio/issues"
+  },
+  "homepage": "https://github.com/rjtruitt/iteratio#readme",
+  "dependencies": {
+    "inversify": "^6.0.0",
+    "reflect-metadata": "^0.2.0",
+    "zod": "^3.0.0"
+  },
+  "peerDependencies": {
+    "flight-controller": "^0.1.0",
+    "zod": "^3.0.0"
+  },
+  "peerDependenciesMeta": {
+    "flight-controller": {
+      "optional": true
+    }
+  },
+  "devDependencies": {
+    "@swc/core": "^1.15.33",
+    "@types/node": "^20.19.41",
+    "@typescript-eslint/eslint-plugin": "^7.3.1",
+    "@typescript-eslint/parser": "^7.3.1",
+    "eslint": "^8.57.0",
+    "prettier": "^3.2.5",
+    "typescript": "^5.9.3",
+    "unplugin-swc": "^1.5.9",
+    "vitest": "^4.1.6"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
