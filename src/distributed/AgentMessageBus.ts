@@ -1,10 +1,8 @@
 import { EventEmitter } from 'events';
 import type {
-  MessageType,
   AgentMessage,
   BroadcastFilter,
   MessageBusConfig,
-  ITransport,
 } from './AgentMessageBusTypes.js';
 import { InMemoryTransport, getOrCreateSharedTransport } from './InMemoryTransport.js';
 
@@ -256,7 +254,7 @@ export class AgentMessageBus extends EventEmitter {
    * Only messages matching the filter criteria will be delivered to the handler.
    */
   async subscribeToBroadcasts(
-    agentId: string,
+    _agentId: string,
     filter: BroadcastFilter | string,
     handler: (msg: AgentMessage) => void
   ): Promise<void> {
@@ -363,7 +361,7 @@ export class AgentMessageBus extends EventEmitter {
   async shutdown(): Promise<void> {
     this.isShutdown = true;
 
-    for (const [id, pending] of this.pendingRequests) {
+    for (const [, pending] of this.pendingRequests) {
       clearTimeout(pending.timeout);
       pending.reject(new Error('Message bus shutting down'));
     }

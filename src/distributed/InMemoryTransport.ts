@@ -31,7 +31,7 @@ export class InMemoryTransport implements ITransport {
   }
 
   /** Not supported at the transport level; use AgentMessageBus.request() instead. */
-  async request(topic: string, message: any, timeout: number): Promise<any> {
+  async request(_topic: string, _message: any, _timeout: number): Promise<any> {
     throw new Error('Use AgentMessageBus.request() instead');
   }
 

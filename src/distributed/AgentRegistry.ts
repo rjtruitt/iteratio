@@ -156,7 +156,6 @@ export class AgentRegistry extends EventEmitter {
   private config: Required<RegistryConfig>;
   private heartbeatCancellers: Map<string, { cancelled: boolean }> = new Map();
   private healthWatchControl: { cancelled: boolean } | null = null;
-  private healthCallback: ((agent: AgentIdentity) => void) | null = null;
   private messageBus?: any;
   private isShutdown = false;
 
@@ -335,7 +334,6 @@ export class AgentRegistry extends EventEmitter {
   async watchHealth(callback: (deadAgent: AgentIdentity) => void): Promise<void> {
     this.stopHealthWatch();
 
-    this.healthCallback = callback;
     const control = { cancelled: false };
     this.healthWatchControl = control;
 
@@ -371,7 +369,6 @@ export class AgentRegistry extends EventEmitter {
       this.healthWatchControl.cancelled = true;
       this.healthWatchControl = null;
     }
-    this.healthCallback = null;
   }
 
   /** Returns aggregate statistics about registered agents grouped by role, status, provider, and machine. */

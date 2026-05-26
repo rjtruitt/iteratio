@@ -73,7 +73,6 @@ let workIdCounter = 0;
  */
 export class WorkCoordinator extends EventEmitter {
   private redis: any;
-  private messageBus?: any;
   private config: Required<WorkCoordinatorConfig>;
   private cleanupControl: { cancelled: boolean } | null = null;
   private workItems: Map<string, WorkItem> = new Map();
@@ -83,13 +82,13 @@ export class WorkCoordinator extends EventEmitter {
     super();
 
     this.redis = config.redis;
-    this.messageBus = config.messageBus;
 
     this.config = {
-      ...config,
       defaultTTL: config.defaultTTL || 300000,
       similarityThreshold: config.similarityThreshold || 0.8,
       cleanupInterval: config.cleanupInterval || 60000,
+      redis: config.redis,
+      messageBus: config.messageBus,
     };
   }
 
