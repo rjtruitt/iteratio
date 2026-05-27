@@ -37,6 +37,7 @@ coverage/
 !CHANGELOG.md
 !LICENSE
 !.github/AGENTS.md
+architecture/
 
 # Armament workspace
 .armaws/
